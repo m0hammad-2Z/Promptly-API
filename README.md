@@ -49,244 +49,165 @@ Four error types will returned as JSON object if a request fail:
 - 405: method not allowed
 
 ### Endpoints
-#### GET /categories
-- General
-  - Get all available categories, success value and categories number.
-- Sample `curl http://127.0.0.1:5000/categories`
-```bash
+### Listing or Creating Prompts
+#### GET `/prompts`
+
+- This endpoint retrieves a paginated list of prompts.
+- Query parameters:
+  - page: Page number (default: 1)
+```json
 {
-    "categories": [
-        "Science",
-        "Art",
-        "Geography",
-        "History",
-        "Entertainment",
-        "Sports"
-    ],
-    "categories number": 6,
-    "success": true
+  "success": true,
+  "prompts": [...],  // List of prompts
+  "total_prompts": 25
+}
+```
+Example request:   `/prompts?page=2`
+
+#### POST `/prompts`
+
+- This endpoint allows the addition of new prompts.
+- Requires authentication with permission 'add:prompt'.
+- Request JSON payload:
+```json
+{
+  "title": "New Prompt Title",
+  "content": "This is the prompt content.",
+  "genre_id": 1
+}
+```
+Response:
+```json
+{
+  "success": true,
+  "Prompts": 26
+}
+```
+Getting, Updating, and Deleting Prompts
+#### GET `/prompts/{id}`
+
+- This endpoint retrieves a specific prompt by its ID.
+- Response:
+```json
+{
+  "success": true,
+  "prompt": {...}  // Details of the requested prompt
+}
+```
+Example request: `/prompts/1`
+#### PATCH `/prompts/{id}`
+
+- This endpoint allows updating a specific prompt by its ID.
+- Requires authentication with permission 'update:prompt'.
+- Request JSON payload (at least one field is required):
+```json
+{
+  "content": "Updated prompt content"
+}
+```
+Response:
+```json
+{
+  "success": true,
+  "prompt_id": 1
 }
 ```
 
+#### DELETE `/prompts/{id}`
 
-#### GET /categories/<category_id>
-- General
-  - Returns the category details for the specified ID.
-  - Get category, success value.
-- Sample `curl http://127.0.0.1:5000//categories/1`
-```bash
+- This endpoint allows deleting a specific prompt by its ID.
+- Requires authentication with permission 'delete:prompt'.
+- Response:
+```json
 {
-    "categories": {
-        "id": 1,
-        "type": "Science"
-    },
-    "success": true
+  "success": true,
+  "prompt_id": 1
 }
 ```
+Example request: `/prompts/1`
 
-#### GET /questions
-- General
-  - Returns a list of paginated questions, success value, total number of questions and categories.
-  - Results are paginated in groups of 10.
-  - Include a request argument to choose page number, starting from 1.
-- Sample `curl http://127.0.0.1:5000/questions`
-```bash
-{
-    "categories": [
-        "Science",
-        "Art",
-        "Geography",
-        "History",
-        "Entertainment",
-        "Sports"
-    ],
-    "current_category": null,
-    "questions": [
-        {
-            "answer": "My name is Mohammad Al-Zaro",
-            "category": "1",
-            "difficulty": 5,
-            "id": 24,
-            "question": "What is your name"
-        },
-        {
-            "answer": "Blood",
-            "category": "1",
-            "difficulty": 4,
-            "id": 22,
-            "question": "Hematology is a branch of medicine involving the study of what?"
-        },
-        {
-            "answer": "Alexander Fleming",
-            "category": "1",
-            "difficulty": 3,
-            "id": 21,
-            "question": "Who discovered penicillin?"
-        },
-        {
-            "answer": "The Liver",
-            "category": "1",
-            "difficulty": 4,
-            "id": 20,
-            "question": "What is the heaviest organ in the human body?"
-        },
-        {
-            "answer": "Mona Lisa",
-            "category": "2",
-            "difficulty": 3,
-            "id": 17,
-            "question": "La Giaconda is better known as what?"
-        },
-        {
-            "answer": "One",
-            "category": "2",
-            "difficulty": 4,
-            "id": 18,
-            "question": "How many paintings did Van Gogh sell in his lifetime?"
-        },
-        {
-            "answer": "The Palace of Versailles",
-            "category": "3",
-            "difficulty": 3,
-            "id": 14,
-            "question": "In which royal palace would you find the Hall of Mirrors?"
-        },
-        {
-            "answer": "Agra",
-            "category": "3",
-            "difficulty": 2,
-            "id": 15,
-            "question": "The Taj Mahal is located in which Indian city?"
-        },
-        {
-            "answer": "Maya Angelou",
-            "category": "4",
-            "difficulty": 2,
-            "id": 5,
-            "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
-        },
-        {
-            "answer": "George Washington Carver",
-            "category": "4",
-            "difficulty": 2,
-            "id": 12,
-            "question": "Who invented Peanut Butter?"
-        }
-    ],
-    "success": true,
-    "total_questions": 15
-```
 
-#### GET /categories/<category_id>/questions
-- General
-  - Retrieves questions based on the specified category ID.
-  - Paginated in groups of 10.categories
-  - Get success, questions, total_questions and current_category.
-- Sample `curl http://127.0.0.1:5000/categories/1/questions`
-```bash
+### Listing or Creating Genres
+#### GET `/genres`
+
+- This endpoint retrieves a paginated list of genres.
+- Query parameters:
+- page: Page number (default: 1)
+- Response:
+```json
 {
-    "success": true,
-    "questions": [
-        {
-            "id": 1,
-            "question": "What is the capital of France?",
-            "answer": "Paris",
-            "difficulty": 3,
-            "category": "Geography"
-        },
-        ...
-    ],
-    "total_questions": 5,
-    "categories": ["Science", "Art", "Geography", "Sports"],
-    "current_category": "Geography"
+  "success": true,
+  "genres": [...],  // List of genres
+  "total_genres": 10
 }
 ```
+- Example request: `/genres?page=2`
 
-#### DELETE /questions/<question_id>
-- General
-  - Deletes the question with the specified ID.
-  - Return success value, question id and total questions after the deletaion proccess.
-- Sample `curl http://127.0.0.1:5000/questions/5 -X DELETE`
-```bash
-{
-    "success": true,
-    "question id": 5,
-    "total_questions": 19
-}
-```
+#### POST `/genres`
 
-
-#### POST /questions
-- General
-  - Creates a new question with the provided details.
-  - Return success value and total questions after the added proccess.
-- Sample `curl http://127.0.0.1:5000/questions -X POST -H "Content-Type: application/json" -d '{
-    "question": "What is the capital of Germany?",
-    "answer": "Berlin",
-    "category": "Geography",
-    "difficulty": 2
-}'`
-```bash
-{
-    "success": true,
-    "total_questions": 20
-}
-```
-
-
-#### POST /questions/search
-- General
-  - Searches for questions that include the specified search term.
-  - Return success value, questions, total questions founded.
-- Sample `curl http://127.0.0.1:5000/questions -X POST -H "Content-Type: application/json" -d '{
-    "searchTerm": "capital"}'`
-  
-```bash
-{
-    "success": true,
-    "questions": [
-        {
-            "id": 1,
-            "question": "What is the capital of France?",
-            "answer": "Paris",
-            "difficulty": 3,
-            "category": "Geography"
-        },
-        ...
-    ],
-    "total found": 2
-}
-```
-
-
-#### POST /questions/play
-- General
-  - Generates a random question for the quiz based on the specified category and previous questions.
-  - Return success value and random question from the same category.
-- Sample `curl http://127.0.0.1:5000/questions/play -X POST -H "Content-Type: application/json" -d '{
-    "quiz_category": {
-        "type": "Geography",
-        "id": "2"
-    },
-    "previous_questions": [1, 2, 3]
-}'`
-  
-```bash
-{
-    "success": true,
-    "question": {
-        "id": 4,
-        "question": "What is the capital of Germany?",
-        "answer": "Berlin",
-        "difficulty": 2,
-        "category": "Geography"
+- This endpoint allows the addition of new genres.
+- Requires authentication with permission 'add:genre'.
+- Request JSON payload:
+    ```json
+    {
+        "name": "New Genre",
+        "description": "Description of the new genre."
     }
+    ```
+- Response:
+    ```json
+    {
+        "success": true,
+        "total_genres": 11
+    }
+    ```
+### Getting, Updating, and Deleting Genres
+#### GET `/genres/{id}`
+
+- This endpoint retrieves a specific genre by its ID.
+- Response:
+```json
+{
+  "success": true,
+  "genre": {...}  // Details of the requested genre
+}
+```
+- Example request: `/genres/1`
+
+
+#### PATCH `/genres/{id}`
+
+- This endpoint allows updating a specific genre by its ID.
+- Requires authentication with permission 'update:genre'.
+- Request JSON payload (at least one field is required):
+```json
+{
+  "description": "Updated genre description"
+}
+```
+- Response:
+
+```json
+{
+  "success": true,
+  "genre_id": 1
 }
 ```
 
+#### DELETE `/genres/{id}`
 
+- This endpoint allows deleting a specific genre by its ID.
+- Requires authentication with permission 'delete:genre'.
+- Response:
+```json
+{
+  "success": true,
+  "genre_id": 1
+}
+```
+- Example request: `/genres/1`
 
-
+#### Note: Replace placeholders like {id} with actual values when making requests.
 
 
 
