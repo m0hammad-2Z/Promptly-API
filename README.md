@@ -44,9 +44,11 @@ Four error types will returned as JSON object if a request fail:
 {"success": False, "error": 405, "message": "method not allowed"}
 ```
 - 400: Bad Request
+- 401: Unauthorized
 - 404: Resource Not Found
 - 422: Not Processable
 - 405: method not allowed
+  
 
 ### Endpoints
 ### Listing or Creating Prompts
