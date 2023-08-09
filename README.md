@@ -27,7 +27,7 @@ Navigate to the backend folder and run the following commands:
 dropdb promptly                      // Drop the database
 createdb promptly                    // Create the database    
 psql -d promptly -f data.sql         // Create the tables and insert data
-python test_flaskr.py                // Run tests
+python tests.py                // Run tests
 ```
 
 
