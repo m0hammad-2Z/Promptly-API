@@ -40,7 +40,7 @@ python tests.py                // Run tests
 
 ### Errors
 Four error types will returned as JSON object if a request fail:
-```bash
+```json
 {"success": False, "error": 405, "message": "method not allowed"}
 ```
 - 400: Bad Request
