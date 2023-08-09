@@ -24,10 +24,10 @@ The application is run on `http://127.0.0.1:5000/` by default.
 ### Tests
 Navigate to the backend folder and run the following commands:
 ```bash
-dropdb trivia                      // Drop the database
-createdb trivia                    // Create the database    
-psql bookshelf_test < books.psql   // Create the tables and insert data
-python test_flaskr.py              // Run tests
+dropdb promptly                      // Drop the database
+createdb promptly                    // Create the database    
+psql -d promptly -f data.sql         // Create the tables and insert data
+python test_flaskr.py                // Run tests
 ```
 
 
