@@ -9,7 +9,7 @@ Creative Writing Prompt API is a RESTful web service that provides users with id
 
 
 ### Configuration
-To install the necessary packages for the backend, navigate to the backend folder and execute the command ```pip install requirements.txt```. This will ensure that you have all the dependencies listed in the requirements file.
+To install the necessary packages for the backend, execute the command ```pip install requirements.txt```. This will ensure that you have all the dependencies listed in the requirements file.
 
 Run the application
 ```bash
@@ -24,10 +24,10 @@ The application is run on `http://127.0.0.1:5000/` by default.
 ### Tests
 Navigate to the backend folder and run the following commands:
 ```bash
-dropdb trivia                      //Drop the database
-createdb trivia                    //Create the database    
-psql bookshelf_test < books.psql   //Create the tables and insert data
-python test_flaskr.py              //Run tests
+dropdb trivia                      // Drop the database
+createdb trivia                    // Create the database    
+psql bookshelf_test < books.psql   // Create the tables and insert data
+python test_flaskr.py              // Run tests
 ```
 
 
