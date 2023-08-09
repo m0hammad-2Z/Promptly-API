@@ -148,19 +148,19 @@ Example request: `/prompts/1`
 - This endpoint allows the addition of new genres.
 - Requires authentication with permission 'add:genre'.
 - Request JSON payload:
-    ```json
-    {
-        "name": "New Genre",
-        "description": "Description of the new genre."
-    }
-    ```
+```json
+  {
+    "name": "New Genre",
+    "description": "Description of the new genre."
+  }
+```
 - Response:
-    ```json
-    {
-        "success": true,
-        "total_genres": 11
-    }
-    ```
+```json
+  {
+    "success": true,
+    "total_genres": 11
+  }
+```
 ### Getting, Updating, and Deleting Genres
 #### GET `/genres/{id}`
 
