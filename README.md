@@ -36,7 +36,10 @@ python tests.py                // Run tests
 ### Getting Started
 - Base URL: This application is run locally. By default on `http://127.0.0.1:5000/`.
 
-- Authentication: No Authentication or API key needed.
+- There are three types of users with different levels of access:
+  - ADMIN: Can make any request.
+  - USER:  Can access any GET request, and has full access to all endpoints in the prompts section.
+  - GUEST: Can only access any GET request.
 
 ### Errors
 Four error types will returned as JSON object if a request fail:
