@@ -3,8 +3,8 @@ from flask import Flask, render_template, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
 import random
-from backend.auth import requires_auth
-from backend.models import setup_db, Genre, Prompt
+from auth import AuthError, requires_auth
+from models import setup_db, Genre, Prompt
 
 
 
@@ -219,4 +219,12 @@ def not_found(error):
         jsonify({"success": False, "error": 405, "message": "method not allowed"}),
         405,
     )
-            
+
+@app.errorhandler(AuthError)
+def autherror(error):
+    return jsonify({
+                    "success": False, 
+                    "error": error.status_code,
+                    "message": error.error
+                    }), error.status_code
+    

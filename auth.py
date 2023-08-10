@@ -51,7 +51,9 @@ def get_token_auth_header():
 
 def check_permissions(permission, payload):
     if 'permissions' not in payload:
-        raise AuthError(401)
+        raise AuthError({
+            'code': 'unauthorized malformed',
+        }, 401)
     
     if permission not in payload['permissions']:
         raise AuthError({
