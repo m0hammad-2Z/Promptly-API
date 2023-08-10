@@ -48,7 +48,7 @@ Authorization: Bearer YOUR_AUTH_TOKEN
 
 - Admin token sample
 ```bash
-
+  token
 ```
 
 - User token sample
