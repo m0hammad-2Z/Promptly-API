@@ -50,12 +50,12 @@ Authorization: Bearer YOUR_AUTH_TOKEN
   - USER:  Can access any `GET` request, and has full access to all endpoints in the prompts section.
   - GUEST: Can only access any `GET` request.
 
-  - Admin token sample
+- Admin token sample
 ```bash
   token
 ```
 
-  - User token sample
+- User token sample
 ```bash
 eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkNRVVoxWmh5MlE1bmNYemdXOTBnNCJ9.eyJpc3MiOiJodHRwczovL3Byb21wdGx5MC51cy5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTY0MDc3ODAwMDE3NTA0MTQzNzQiLCJhdWQiOiJwcm9tcHRzIiwiaWF0IjoxNjkxNTcxMDc0LCJleHAiOjE2OTE2NTc0NzQsImF6cCI6IlhzQU5QV3VRVUNRRTZJbFR5UHR4cFZOZGNjblBFRXk5Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJhZGQ6cHJvbXB0IiwiZGVsZXRlOnByb21wdCIsInVwZGF0ZTpwcm9tcHQiXX0.1E4PRzTwWGGYEusEP5sLMaTXHgq0_EPGHdPn5D5HeVtZp0Decr3FqtT5RKzkdLqiyHGYFCchWgS2d9AG5yKfZ7cAJtE-Xlyie4cuS1aueIFTPgha2BIt3LcMKTplBj8qA8bVFhzFJ9_CpQKhT9jO3iLTnx1q1ZpjK1rKQaCV-uRVg9xnyCaaJsmdVDI8dQPt16vTfMwkpCzhKv5ZCmj_c0_CtLoANOBpZOL6YFZe1LFuXOlk2f0UEEtVa8CE3E6NlDU-cJwZCKSdiA0yV-HXjf2se7wF1KzrMvoiAtIx70vWd9J-gVJz9_ZVzwp1T3DUiHxpY6yI3DnlGPMSab2ZNA
 ```
