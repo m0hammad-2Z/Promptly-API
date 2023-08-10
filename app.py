@@ -24,7 +24,7 @@ PROMPOTS_PER_PAGE = 10
 
 # Listing or creating prompts
 @app.route('/prompts', methods =['GET'])
-def get_all_prompts(payload):
+def get_all_prompts():
     page = request.args.get('page', 1, type=int)
     if page <= 0:
         page = 1
@@ -62,7 +62,7 @@ def add_prompt(payload):
 
 # Get prompt by id   
 @app.route('/prompts/<int:id>', methods =['GET'])
-def get_prompt_by_id(payload, id):
+def get_prompt_by_id(id):
     prompt = Prompt.query.get_or_404(id)
     return jsonify({"success":True, "prompt":prompt.format()})
 
@@ -145,7 +145,7 @@ def add_genre(payload):
 
 # Get genre by id   
 @app.route('/genres/<int:id>', methods =['GET'])
-def get_genre_by_id(payload, id):
+def get_genre_by_id(id):
     genre = Genre.query.get_or_404(id)
     return jsonify({"success":True, "genre":genre.format()})
 
