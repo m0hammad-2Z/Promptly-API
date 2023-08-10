@@ -41,9 +41,6 @@ python tests.py                // Run tests
 Authorization: Bearer YOUR_AUTH_TOKEN
 ```
 
-```space```
-
-
 - Base URL: This application is run locally. By default on `http://127.0.0.1:5000/`.
   
 
