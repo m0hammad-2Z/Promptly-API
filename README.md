@@ -35,7 +35,7 @@ python tests.py                // Run tests
 
 ### Getting Started
 - Base URL: This application is run locally. By default on `http://127.0.0.1:5000/`.
-**Note:** Before accessing the following endpoints, ensure that you have a valid authentication token. You can include the token in the request headers as shown below:
+  
 - There are three types of users with different levels of access:
   - ADMIN: Can make any request.
   - USER:  Can access any `GET` request, and has full access to all endpoints in the prompts section.
@@ -50,7 +50,7 @@ python tests.py                // Run tests
 ```bash
 eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkNRVVoxWmh5MlE1bmNYemdXOTBnNCJ9.eyJpc3MiOiJodHRwczovL3Byb21wdGx5MC51cy5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTY0MDc3ODAwMDE3NTA0MTQzNzQiLCJhdWQiOiJwcm9tcHRzIiwiaWF0IjoxNjkxNTcxMDc0LCJleHAiOjE2OTE2NTc0NzQsImF6cCI6IlhzQU5QV3VRVUNRRTZJbFR5UHR4cFZOZGNjblBFRXk5Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJhZGQ6cHJvbXB0IiwiZGVsZXRlOnByb21wdCIsInVwZGF0ZTpwcm9tcHQiXX0.1E4PRzTwWGGYEusEP5sLMaTXHgq0_EPGHdPn5D5HeVtZp0Decr3FqtT5RKzkdLqiyHGYFCchWgS2d9AG5yKfZ7cAJtE-Xlyie4cuS1aueIFTPgha2BIt3LcMKTplBj8qA8bVFhzFJ9_CpQKhT9jO3iLTnx1q1ZpjK1rKQaCV-uRVg9xnyCaaJsmdVDI8dQPt16vTfMwkpCzhKv5ZCmj_c0_CtLoANOBpZOL6YFZe1LFuXOlk2f0UEEtVa8CE3E6NlDU-cJwZCKSdiA0yV-HXjf2se7wF1KzrMvoiAtIx70vWd9J-gVJz9_ZVzwp1T3DUiHxpY6yI3DnlGPMSab2ZNA
 ```
-**Note** No token needed to make `GET` request.
+**Note**: No token needed to make `GET` request.
 
 ### Errors
 Four error types will returned as JSON object if a request fail:
