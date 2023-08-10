@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Promptly-API</title>
+</head>
+<body>
+
+<h1>Promptly-API</h1>
+
+<p>Creative Writing Prompt API is a RESTful web service that provides users with ideas or suggestions for writing something creative, such as a story, a poem, a script, or an essay. The API allows users to:</p>
+
+<p>Github repo: <a href="https://github.com/m0hammad-2Z/Promptly-API">https://github.com/m0hammad-2Z/Promptly-API</a></p>
+
+<h2>Pre-requisites and Local Development</h2>
+
+<ul>
+  <li>python</li>
+  <li>pip</li>
+</ul>
+
+<h3>Configuration</h3>
+<p>To install the necessary packages for the backend, execute the command <code>pip install requirements.txt</code>. This will ensure that you have all the dependencies listed in the requirements file.</p>
+
+<p>Run the application</p>
+<pre><code>export FLASK_APP=flaskr
+export FLASK_ENV=development
+flask run
+</code></pre>
+<p>The application is run on <code>http://127.0.0.1:5000/</code> by default.</p>
+
+<h3>Tests</h3>
+<p>Navigate to the backend folder and run the following commands:</p>
+<pre><code>dropdb promptly                      // Drop the database
+createdb promptly                    // Create the database    
+psql -d promptly -f data.sql         // Create the tables and insert data
+python tests.py                // Run tests
+</code></pre>
+
+<h2>API Reference</h2>
+
+<h3>Getting Started</h3>
+
+<p><strong>Note:</strong> Before accessing the following endpoints, ensure that you have a valid authentication token. You can include the token in the request headers as shown below:</p>
+
+<pre><code>Authorization: Bearer YOUR_AUTH_TOKEN
+</code></pre>
+
+<p>Base URL: This application is run locally. By default on <code>http://127.0.0.1:5000/</code>.</p>
+
+<p>There are three types of users with different levels of access:</p>
+<ul>
+  <li>ADMIN: Can make any request.</li>
+  <li>USER:  Can access any <code>GET</code> request, and has full access to all endpoints in the prompts section.</li>
+  <li>GUEST: Can only access any <code>GET</code> request.</li>
+</ul>
+
+<p>Admin token sample</p>
+<pre><code>token
+</code></pre>
+
+<p>User token sample</p>
+<pre><code>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkNRVVoxWmh5MlE1bmNYemdXOTBnNCJ9.eyJpc3MiOiJodHRwczovL3Byb21wdGx5MC51cy5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTY0MDc3ODAwMDE3NTA0MTQzNzQiLCJhdWQiOiJwcm9tcHRzIiwiaWF0IjoxNjkxNTcxMDc0LCJleHAiOjE2OTE2NTc0NzQsImF6cCI6IlhzQU5QV3VRVUNRRTZJbFR5UHR4cFZOZGNjblBFRXk5Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJhZGQ6cHJvbXB0IiwiZGVsZXRlOnByb21wdCIsInVwZGF0ZTpwcm9tcHQiXX0.1E4PRzTwWGGYEusEP5sLMaTXHgq0_EPGHdPn5D5HeVtZp0Decr3FqtT5RKzkdLqiyHGYFCchWgS2d9AG5yKfZ7cAJtE-Xlyie4cuS1aueIFTPgha2BIt3LcMKTplBj8qA8bVFhzFJ9_CpQKhT9jO3iLTnx1q1ZpjK1rKQaCV-uRVg9xnyCaaJsmdVDI8dQPt16vTfMwkpCzhKv5ZCmj_c0_CtLoANOBpZOL6YFZe1LFuXOlk2f0UEEtVa8CE3E6NlDU-cJwZCKSdiA0yV-HXjf2se7wF1KzrMvoiAtIx70vWd9J-gVJz9_ZVzwp1T3DUiHxpY6yI3DnlGPMSab2ZNA
+</code></pre>
+<p><strong>Note:</strong> No token needed to make <code>GET</code> request.</p>
+
+<h3>Errors</h3>
+<p>Four error types will returned as JSON object if a request fail:</p>
+<pre><code>{"success": False, "error": 405, "message": "method not allowed"}
+</code></pre>
+<ul>
+  <li>400: Bad Request</li>
+  <li>401: Unauthorized</li>
+  <li>404: Resource Not Found</li>
+  <li>422: Not Processable</li>
+  <li>405: method not allowed</li>
+</ul>
+
+<h3>Endpoints</h3>
+<h4>Listing or Creating Prompts</h4>
+<h5>GET <code>/prompts</code></h5>
+
+<p>This endpoint retrieves a paginated list of prompts.</p>
+<p>Query parameters:</p>
+<ul>
+  <li>page: Page number (default: 1)</li>
+</ul>
+<pre><code>{
+  "success": true,
+  "prompts": [...],  // List of prompts
+  "total_prompts": 25
+}
+</code></pre>
+<p>Example request:   <code>/prompts?page=2</code></p>
+
+<h5>POST <code>/prompts</code></h5>
+
+<p>This endpoint allows the addition of new prompts.</p>
+<p>Requires authentication with permission 'add:prompt'.</p>
+<p>Request JSON payload:</p>
+<pre><code>{
+  "title": "New Prompt Title",
+  "content": "This is the prompt content.",
+  "genre_id": 1
+}
+</code></pre>
+<p>Response:</p>
+<pre><code>{
+  "success": true,
+  "Prompts": 26
+}
+</code></pre>
+<h4>Getting, Updating, and Deleting Prompts</h4>
+<h5>GET <code>/prompts/{id}</code></h5>
+
+<p>This endpoint retrieves a specific prompt by its ID.</p>
+<p>Response:</p>
+<pre><code>{
+  "success": true,
+  "prompt": {...}  // Details of the requested prompt
+}
+</code></pre>
+<p>Example request: <code>/prompts/1</code></p>
+
+<h5>PATCH <code>/prompts/{id}</code></h5>
+
+<p>This endpoint allows updating a specific prompt by its ID.</p>
+<p>Requires authentication with permission 'update:prompt'.</p>
+<p>Request JSON payload (at least one field is required):</p>
+<pre><code>{
+  "content": "Updated prompt content"
+}
+</code></pre>
+<p>Response:</p>
+<pre><code>{
+  "success": true,
+  "prompt_id": 1
+}
+</code></pre>
+
+<h5>DELETE <code>/prompts/{id}</code></h5>
+
+<p>This endpoint allows deleting a specific prompt by its ID.</p>
+<p>Requires authentication with permission 'delete:prompt'.</p>
+<p>Response:</p>
+<pre><code>{
+  "success": true,
+  "prompt_id": 1
+}
+</code></pre>
+<p>Example request: <code>/prompts/1</code></p>
+
+<h4>Listing or Creating Genres</h4>
+<h5>GET <code>/genres</code></h5>
+
+<p>This endpoint retrieves a paginated list of genres.</p>
+<p>Query parameters:</p>
+<p>page: Page number (default: 1)</p>
+<p>Response:</p>
+<pre><code>{
+  "success": true,
+  "genres": [...],  // List of genres
+  "total_genres": 10
+}
+</code></pre>
+<p>Example request: <code>/genres?page=2</code></p>
+
+<h5>POST <code>/genres</code></h5>
+
+<p>This endpoint allows the addition of new genres.</p>
+<p>Requires authentication with permission 'add:genre'.</p>
+<p>Request JSON payload:</p>
+<pre><code>{
+  "name": "New Genre",
+  "description": "Description of the new genre."
+}
+</code></pre>
+<p>Response:</p>
+<pre><code>{
+  "success": true,
+  "total_genres": 11
+}
+</code></pre>
+<h4>Getting, Updating, and Deleting Genres</h4>
+<h5>GET <code>/genres/{id}</code></h5>
+
+<p>This endpoint retrieves a specific genre by its ID.</p>
+<p>Response:</p>
+<pre><code>{
+  "success": true,
+  "genre": {...}  // Details of the requested genre
+}
+</code></pre>
+<p>Example request: <code>/genres/1</code></p>
+
+<h5>PATCH <code>/genres/{id}</code></h5>
+
+<p>This endpoint allows updating a specific genre by its ID.</p>
+<p>Requires authentication with permission 'update:genre'.</p>
+<p>Request JSON payload (at least one field is required):</p>
+<pre><code>{
+  "description": "Updated genre description"
+}
+</code></pre>
+<p>Response:</p>
+<pre><code>{
+  "success": true,
+  "genre_id": 1
+}
+</code></pre>
+
+<h5>DELETE <code>/genres/{id}</code></h5>
+
+<p>This endpoint allows deleting a specific genre by its ID.</p>
+<p>Requires authentication with permission 'delete:genre'.</p>
+<p>Response:</p>
+<pre><code>{
+  "success": true,
+  "genre_id": 1
+}
+</code></pre>
+<p>Example request: <code>/genres/1</code></p>
+
+<p><strong>Note:</strong> Replace placeholders like {id} with actual values when making requests.</p>
+
+</body>
+</html>

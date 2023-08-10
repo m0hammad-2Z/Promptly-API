@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, abort, jsonify
+from flask import Flask, render_template, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
 import random
@@ -19,6 +19,11 @@ def after_request(response):
     return response
 
 PROMPOTS_PER_PAGE = 10
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 
 '''''PROMOTS'''''
 
