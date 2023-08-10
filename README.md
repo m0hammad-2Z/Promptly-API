@@ -35,7 +35,8 @@ python tests.py                // Run tests
 
 ### Getting Started
 - Base URL: This application is run locally. By default on `http://127.0.0.1:5000/`.
--  **Note:** Before accessing the following endpoints, ensure that you have a valid authentication token. You can include the token in the request headers as shown below:
+  
+- **Note:** Before accessing the following endpoints, ensure that you have a valid authentication token. You can include the token in the request headers as shown below:
 
 ```plaintext
 Authorization: Bearer YOUR_AUTH_TOKEN
