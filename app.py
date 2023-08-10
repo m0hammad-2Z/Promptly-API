@@ -24,7 +24,7 @@ PROMPOTS_PER_PAGE = 10
 
 # Listing or creating prompts
 @app.route('/prompts', methods =['GET'])
-def get_all_prompts():
+def get_all_prompts(payload):
     page = request.args.get('page', 1, type=int)
     if page <= 0:
         page = 1
@@ -44,7 +44,7 @@ def get_all_prompts():
 # Insert prompts
 @app.route('/prompts', methods =['POST'])
 @requires_auth(permission='add:prompt')
-def add_prompt(payload, ):
+def add_prompt(payload):
     try:
         body = request.get_json()
         title = body.get('title', None)
