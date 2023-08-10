@@ -2,7 +2,7 @@
 
 Creative Writing Prompt API is a RESTful web service that provides users with ideas or suggestions for writing something creative, such as a story, a poem, a script, or an essay. The API allows users to:
 
-https://promptly-deployment.onrender.com/
+Demo: https://promptly-deployment.onrender.com/
 
 ## Pre-requisites and Local Development
 
