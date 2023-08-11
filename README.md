@@ -1,6 +1,6 @@
 # Promptly-API
 
-Creative Writing Prompt API is a RESTful web service that provides users with ideas or suggestions for writing something creative, such as a story, a poem, a script, or an essay. The API allows users to:
+RESTful web service that provides users with ideas or suggestions for writing something creative, such as a story, a poem, a script, or an essay. The API allows users to:
 
 Demo: https://promptly-deployment.onrender.com/
 
